@@ -108,7 +108,7 @@ public class FramesMenuPrincipal extends JFrame {
 
         pnlMenuNavegacion = new JPanel(new BorderLayout());
         //NAVEGACION 
-
+        //Revision branch Cambio 
         // pnlMenuNavegacion.setBackground(v2);
         JPanel pnlMenuNavegacionNorte = new JPanel(new FlowLayout());
         pnlMenuNavegacionNorte.setBackground(Color.WHITE);
