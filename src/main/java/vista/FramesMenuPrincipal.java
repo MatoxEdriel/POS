@@ -9,6 +9,7 @@ package vista;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import components.ButtonHover;
+import components.PlaceHolder;
 import components.RoundedPanel;
 import components.RoundedTextField;
 import java.awt.BorderLayout;
@@ -18,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,8 +41,11 @@ public class FramesMenuPrincipal extends JFrame {
     private JPanel pnlMenuIzquierda;
 
     private JPanel pnlMenuNavegacion;
-
+ 
+    
     private JPanel pnlRuletaOrden;
+    
+    
 
     //Paleta de colores
     public final Color v1 = new Color(0xa7cd2c);
@@ -56,21 +61,23 @@ public class FramesMenuPrincipal extends JFrame {
     private ImageIcon icon;
 
     private RoundedTextField txtBusqueda;
-    
-    
+
     private ImageIcon iconApp;
+    
+    public ImageIcon search = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/buscar.png"));
 
     public FramesMenuPrincipal() {
         initComponents();
-          setIconImage(iconApp.getImage());
-        
+        setIconImage(iconApp.getImage());
+         PlaceHolder placeHolder = new PlaceHolder("Busqueda", txtBusqueda, search);
+
     }
 
     public FramesMenuPrincipal(String titulo) {
         setTitle(titulo);
 
         initComponents();
-          setIconImage(iconApp.getImage());
+        setIconImage(iconApp.getImage());
 
     }
 
@@ -80,7 +87,7 @@ public class FramesMenuPrincipal extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         ImageIcon icono = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/logo1.png"));
-        
+
         iconApp = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/logo1.png"));
 
         JLabel lblIcono = new JLabel(icono);
@@ -143,15 +150,25 @@ public class FramesMenuPrincipal extends JFrame {
 //        
 //        pnlMenuNavegacion.add(panelProducto);
         pnlRuletaOrden = new JPanel(new BorderLayout());
+        pnlRuletaOrden.setBackground(Color.WHITE);
         JPanel pnlOrden = new JPanel();
+        pnlOrden.setBackground(Color.WHITE);
 
         JLabel lblOrden = new JLabel("Orden Actual");
+        lblOrden.setFont(new Font("Arial", Font.BOLD, 24));
+
+
+        int topPadding = 10;
+        int leftPadding = 10;
+        int bottomPadding = 10;
+        int rightPadding = 50;
+        lblOrden.setBorder(BorderFactory.createEmptyBorder(topPadding, leftPadding, bottomPadding, rightPadding));
+
         pnlOrden.add(lblOrden);
-        lblOrden.setFont(new Font("Arial", Font.PLAIN, 24));
 
         pnlRuletaOrden.add(pnlOrden, BorderLayout.NORTH);
 
-        pnlRuletaOrden.setBackground(v3);
+ 
 
         contentPane.add(pnlMenuIzquierda, BorderLayout.WEST);
         contentPane.add(pnlMenuNavegacion, BorderLayout.CENTER);
