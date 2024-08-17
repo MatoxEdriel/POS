@@ -70,7 +70,7 @@ public class FramesMenuPrincipal extends JFrame {
         initComponents();
         setIconImage(iconApp.getImage());
          PlaceHolder placeHolder = new PlaceHolder("Busqueda", txtBusqueda, search);
-
+         //Samuel hpt 
     }
 
     public FramesMenuPrincipal(String titulo) {
