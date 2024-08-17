@@ -9,6 +9,8 @@ package vista;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import components.ButtonHover;
+import components.PlaceHolder;
+import components.RoundedButton;
 import components.RoundedPanel;
 import components.RoundedTextField;
 import java.awt.BorderLayout;
@@ -18,6 +20,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +35,7 @@ import javax.swing.border.EmptyBorder;
  * @author Gabriel
  */
 public class FramesMenuPrincipal extends JFrame {
+//BRILAS
 
     private JPanel contentPane;
 
@@ -39,6 +43,11 @@ public class FramesMenuPrincipal extends JFrame {
     private JPanel pnlMenuIzquierda;
 
     private JPanel pnlMenuNavegacion;
+    //BOTONES
+    private RoundedButton btnPlantas;
+    private RoundedButton btnAbonos;
+    private RoundedButton btnSacos;
+    private RoundedButton btnMacetas;
 
     private JPanel pnlRuletaOrden;
 
@@ -50,27 +59,35 @@ public class FramesMenuPrincipal extends JFrame {
     public final Color v5 = new Color(0x50c8c6);
     public final Color gris = new Color(0xEFEFEF);
 
+    //PADDINGS
+    public final int topPadding = 10;
+    public final int leftPadding = 10;
+    public final int bottomPadding = 10;
+    public final int rightPadding = 50;
+
     //Componentes 
     private JButton btnBoton;
 
     private ImageIcon icon;
 
     private RoundedTextField txtBusqueda;
-    
-    
+
     private ImageIcon iconApp;
+
+    public ImageIcon search = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/buscar.png"));
 
     public FramesMenuPrincipal() {
         initComponents();
-          setIconImage(iconApp.getImage());
-        
+        setIconImage(iconApp.getImage());
+        PlaceHolder placeHolder = new PlaceHolder("Busqueda", txtBusqueda, search);
+        //Samuel hpt 
     }
 
     public FramesMenuPrincipal(String titulo) {
         setTitle(titulo);
 
         initComponents();
-          setIconImage(iconApp.getImage());
+        setIconImage(iconApp.getImage());
 
     }
 
@@ -80,7 +97,7 @@ public class FramesMenuPrincipal extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         ImageIcon icono = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/logo1.png"));
-        
+
         iconApp = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/logo1.png"));
 
         JLabel lblIcono = new JLabel(icono);
@@ -109,49 +126,76 @@ public class FramesMenuPrincipal extends JFrame {
         pnlMenuNavegacion = new JPanel(new BorderLayout());
         //NAVEGACION 
 
-        // pnlMenuNavegacion.setBackground(v2);
         JPanel pnlMenuNavegacionNorte = new JPanel(new FlowLayout());
+        JPanel pnlMenuNavegacionBotones = new JPanel(new BorderLayout());
+        //FLOWLAYOUT.LEFT, 50, 0 MANEJA LOS ESPACIOS ENTRE COMPONENTES
+        JPanel pnlBotones = new JPanel(new FlowLayout(FlowLayout.LEFT,40, 0));
+        pnlBotones.setBorder(BorderFactory.createEmptyBorder(20, leftPadding, bottomPadding, rightPadding));
+        pnlBotones.setBackground(Color.WHITE);
+        ImageIcon imgPlanta = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/plant1.png"));
+        ImageIcon imgSack = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/sack1.png"));
+        ImageIcon imgCompost = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/compost1.png"));
+        ImageIcon imgPot = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/po1.png"));
+
+        btnPlantas = new RoundedButton("PLANTAS", imgPlanta, 30);
+        //SPRINT MODIFICAR SIZE DE CADA BOTON
+        // btnPlantas.setBorder(BorderFactory.createEmptyBorder(topPadding, leftPadding, bottomPadding, rightPadding));
+        btnSacos = new RoundedButton("SACOS", imgSack, 30);
+        btnAbonos = new RoundedButton("ABONOS", imgCompost, 30);
+        btnMacetas = new RoundedButton("MACETAS", imgPot, 30);
+
+        btnPlantas.setBackground(v2);
+        btnPlantas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnPlantas.setFont(new Font("Arial", Font.BOLD, 12));
+
+        btnSacos.setBackground(v2);
+        btnSacos.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnSacos.setFont(new Font("Arial", Font.BOLD, 12));
+
+        btnAbonos.setBackground(v2);
+        btnAbonos.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAbonos.setFont(new Font("Arial", Font.BOLD, 12));
+
+        btnMacetas.setBackground(v2);
+        btnMacetas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnMacetas.setFont(new Font("Arial", Font.BOLD, 12));
+        //Agregar Botones 
+        pnlBotones.add(btnPlantas);
+        pnlBotones.add(btnSacos);
+        pnlBotones.add(btnAbonos);
+        pnlBotones.add(btnMacetas);
+
+        pnlMenuNavegacionBotones.add(pnlBotones, BorderLayout.NORTH);
+
         pnlMenuNavegacionNorte.setBackground(Color.WHITE);
         //Variable cuenta.nombre; 
         JLabel lblBienvenido = new JLabel("  Bienvenido Gabriel");
         lblBienvenido.setFont(new Font("Arial", Font.PLAIN, 30));
-        txtBusqueda = new RoundedTextField(20, 15);
+        txtBusqueda = new RoundedTextField(26, 15);
         txtBusqueda.setBackground(gris);
-        pnlMenuNavegacionNorte.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10)); // 10 píxeles de espacio vertical
+        pnlMenuNavegacionNorte.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
         JLabel lblSpace = new JLabel("                   ");
-        //MEJORAR 
+
         pnlMenuNavegacionNorte.add(lblBienvenido);
         pnlMenuNavegacionNorte.add(lblSpace);
         pnlMenuNavegacionNorte.add(txtBusqueda);
-        //txtBusqueda.setBorder(new EmptyBorder(0, 0, 0, 0)); // Ajusta los valores según sea necesario
 
         pnlMenuNavegacion.add(pnlMenuNavegacionNorte, BorderLayout.NORTH);
+        pnlMenuNavegacion.add(pnlMenuNavegacionBotones, BorderLayout.CENTER);
 
-        //PRODUCTOS 
-//        RoundedPanel panelProducto = new RoundedPanel(20, Color.WHITE);
-//        JPanel pnlInfo = new JPanel(new GridLayout(3,1));
-//        pnlInfo.setBackground(Color.WHITE);
-//        panelProducto.add(pnlInfo);
-//        ImageIcon p1 = new ImageIcon(FramesMenuPrincipal.class.getResource("/images/duranta.jpg"));
-//        JLabel img = new JLabel(p1);
-//        JLabel l1 = new JLabel("PLANTAS");
-//        JLabel precio = new JLabel("$2.00");
-//        
-//        pnlInfo.add(img);
-//        pnlInfo.add(l1);
-//        pnlInfo.add(precio);
-//        
-//        pnlMenuNavegacion.add(panelProducto);
         pnlRuletaOrden = new JPanel(new BorderLayout());
+        pnlRuletaOrden.setBackground(Color.WHITE);
         JPanel pnlOrden = new JPanel();
+        pnlOrden.setBackground(Color.WHITE);
 
         JLabel lblOrden = new JLabel("Orden Actual");
+        lblOrden.setFont(new Font("Arial", Font.BOLD, 24));
+
+        lblOrden.setBorder(BorderFactory.createEmptyBorder(topPadding, leftPadding, bottomPadding, rightPadding));
+
         pnlOrden.add(lblOrden);
-        lblOrden.setFont(new Font("Arial", Font.PLAIN, 24));
 
         pnlRuletaOrden.add(pnlOrden, BorderLayout.NORTH);
-
-        pnlRuletaOrden.setBackground(v3);
 
         contentPane.add(pnlMenuIzquierda, BorderLayout.WEST);
         contentPane.add(pnlMenuNavegacion, BorderLayout.CENTER);
